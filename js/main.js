@@ -128,61 +128,121 @@
 // console.log("Второе число:", second);
 // console.log("Остальные числа:", rest);
 
-const numbers1 = [1, 5, 8, 12, 3];
-const numbers2 = [7, 2, 10, 4, 6];
+// const numbers1 = [1, 5, 8, 12, 3];
+// const numbers2 = [7, 2, 10, 4, 6];
 
-console.log("Первый массив:", numbers1);
-console.log("Второй массив:", numbers2);
-console.log("---");
+// console.log("Первый массив:", numbers1);
+// console.log("Второй массив:", numbers2);
+// console.log("---");
 
-const combinedArray = [...numbers1, ...numbers2];
-console.log("Объединенный массив:", combinedArray);
-console.log("---");
+// const combinedArray = [...numbers1, ...numbers2];
+// console.log("Объединенный массив:", combinedArray);
+// console.log("---");
 
-function findMax(...numbers) {
-  if (numbers.length === 0) {
-    return null; 
-  }
-  return Math.max(...numbers);
+// function findMax(...numbers) {
+//   if (numbers.length === 0) {
+//     return null; 
+//   }
+//   return Math.max(...numbers);
+// }
+
+
+// console.log("Максимум из 5, 12, 8, 3:", findMax(5, 12, 8, 3));
+// console.log("Максимум из объединенного массива:", findMax(...combinedArray));
+// console.log("Максимум из 100, 45, 78, 92:", findMax(100, 45, 78, 92));
+// console.log("---");
+
+
+// const user = {
+//   name: "Анна",
+//   age: 25,
+//   city: "Москва"
+// };
+
+// const userDetails = {
+//   email: "anna@example.com",
+//   phone: "+7 (999) 123-45-67",
+//   occupation: "Разработчик"
+// };
+
+// console.log("Первый объект (user):", user);
+// console.log("Второй объект (userDetails):", userDetails);
+// console.log("---");
+
+// const mergedUser = {
+//   ...user,
+//   ...userDetails
+// };
+
+// console.log("Объединенный объект (mergedUser):", mergedUser);
+
+
+// const obj1 = { a: 1, b: 2, c: 3 };
+// const obj2 = { b: 10, d: 4, e: 5 };
+// const mergedObjects = { ...obj1, ...obj2 };
+
+// console.log("---");
+// console.log("Пример с конфликтующими свойствами:");
+// console.log("obj1:", obj1);
+// console.log("obj2:", obj2);
+// console.log("Объединенный (последний перезаписывает предыдущие):", mergedObjects);
+
+// import { greet, add, PI } from "./utils.js";
+
+// console.log("Модули");
+// console.log(greet ("Алексей"));
+// console.log("5 + 3 =", add(5, 3));
+// console.log("Значение PI:", PI);
+
+// import { multiply as умножить } from "./utils.js";
+// console.log("4 * 7 =", умножить (4, 7));
+
+// import * as Utils from "./utils.js";
+// console.log(Utils.greet("Мария"));
+// console.log("Умножение:", Utils.multiply(3, 9));
+
+
+import { square, cube, E } from './js/math.js';
+
+
+console.log("=== Тестирование математических функций ===\n");
+
+
+console.log("Функция square:");
+console.log(`Квадрат числа 5: ${square(5)}`);       
+console.log(`Квадрат числа -3: ${square(-3)}`);    
+console.log(`Квадрат числа 2.5: ${square(2.5)}`);   
+console.log(`Квадрат числа 0: ${square(0)}`);     
+
+console.log("\n---");
+
+
+console.log("Функция cube:");
+console.log(`Куб числа 3: ${cube(3)}`);              
+console.log(`Куб числа -2: ${cube(-2)}`);            
+console.log(`Куб числа 1.5: ${cube(1.5)}`);        
+console.log(`Куб числа 0: ${cube(0)}`);             
+
+console.log("\n---");
+
+
+console.log("Константа E:");
+console.log(`Число Эйлера (E): ${E}`);
+console.log(`E^2: ${square(E)}`);
+console.log(`E^3: ${cube(E)}`);
+
+console.log("\n---");
+
+
+console.log("Дополнительные тесты:");
+console.log(`5² + 3³ = ${square(5)} + ${cube(3)} = ${square(5) + cube(3)}`);
+console.log(`(2 + 3)² = ${square(2 + 3)}`);
+console.log(`2² + 3² = ${square(2)} + ${square(3)} = ${square(2) + square(3)}`);
+
+
+console.log("\n--- Проверка обработки ошибок ---");
+try {
+  console.log(square("string"));
+} catch (error) {
+  console.log("Ошибка:", error.message);
 }
-
-
-console.log("Максимум из 5, 12, 8, 3:", findMax(5, 12, 8, 3));
-console.log("Максимум из объединенного массива:", findMax(...combinedArray));
-console.log("Максимум из 100, 45, 78, 92:", findMax(100, 45, 78, 92));
-console.log("---");
-
-
-const user = {
-  name: "Анна",
-  age: 25,
-  city: "Москва"
-};
-
-const userDetails = {
-  email: "anna@example.com",
-  phone: "+7 (999) 123-45-67",
-  occupation: "Разработчик"
-};
-
-console.log("Первый объект (user):", user);
-console.log("Второй объект (userDetails):", userDetails);
-console.log("---");
-
-const mergedUser = {
-  ...user,
-  ...userDetails
-};
-
-console.log("Объединенный объект (mergedUser):", mergedUser);
-
-
-const obj1 = { a: 1, b: 2, c: 3 };
-const obj2 = { b: 10, d: 4, e: 5 };
-const mergedObjects = { ...obj1, ...obj2 };
-
-console.log("---");
-console.log("Пример с конфликтующими свойствами:");
-console.log("obj1:", obj1);
-console.log("obj2:", obj2);
-console.log("Объединенный (последний перезаписывает предыдущие):", mergedObjects);
