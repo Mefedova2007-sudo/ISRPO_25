@@ -636,26 +636,227 @@
 // getUserById(1);
 
 // async function createPost() {
-// try {
-// const newPost = {
-// title: "Моя первая запись",
-// body: "Это содержание моей первой записи в блоге",
-// userId: 1,
-// };
-// const response=await fetch("https://jsonplaceholder.typicode.com/posts", {
-// method: "POST",
-// headers: {
-// "Content-Type": "application/json",
-// },
-// body: JSON.stringify(newPost),
-// });
+//   try {
+//     const newPost = {
+//       title: "Моя первая запись",
+//       body: "Это содержание моей первой записи в блоге",
+//       userId: 1,
+//     };
+//     const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(newPost),
+//     });
 
-// const createdPost=await response.json();
-// console.log("Создана новая запись:");
-// console.log("ID:", createdPost.id);
-// console.log("Заголовок:", createdPost.title);
-// } catch (error) {
-// console.log("Ошибка при создании записи:", error.message);
-// }
+//     const createdPost = await response.json();
+//     console.log("Создана новая запись:");
+//     console.log("ID:", createdPost.id);
+//     console.log("Заголовок:", createdPost.title);
+//   } catch (error) {
+//     console.log("Ошибка при создании записи:", error.message);
+//   }
 // }
 // createPost();
+
+// console.log("Optional Chaining");
+// const user1 = {
+//   name: "Андрей",
+//   address: {
+//     city: "Волжский",
+//     street: "Пушкина",
+//   },
+// };
+// const user2 = {
+//   name: "Дмитрий",
+// };
+// const city1 = user2.address && user2.address.city;
+// console.log("Город (старый способ):", city1);
+
+// const city2 = user2.address?.city;
+// console.log("Город (новый способ):", city2);
+
+// const street = user1.address?.street;
+// console.log("Улица:", street);
+
+// const admin = {
+//   пате: "Администратор",
+//   permissions: {
+//     canDelete: () => true,
+//   },
+// };
+// const guest = {
+//   name: "Гость",
+// };
+// console.log("Админ может удалять?", admin.permissions?.canDelete?.());
+// console.log("Гость может удалять?", guest.permissions?.canDelete?.());
+// const company = {
+//   name: "Tech Corp",
+//   employees: [
+//     { name: "Надежда", role: "Developer" },
+//     { name: "Анна", role: "Designer" },
+//   ],
+// };
+// const startup = {
+//   name: "New Startup",
+// };
+// console.log("Первый сотрудник:", company.employees?.[0]?.name);
+// console.log("Первый сотрудник стартапа:", startup.employees?.[0]?.name);
+
+// console.log("Nullish Coalescing");
+// const value1 = 0;
+// const value2 = "";
+// const value3 = false;
+// const value4 = null;
+// const value5 = undefined;
+
+// console.log('value1 || "default":', value1 || "default");
+// console.log('value2 || "default":', value2 || "default");
+// console.log('value3 || "default":', value3 || "default");
+
+// console.log('value1 ?? "default":', value1 ?? "default");
+// console.log('value2 ?? "default":', value2 ?? "default");
+// console.log('value3 ?? "default":', value3 ?? "default");
+// console.log('value4 ?? "default":', value4 ?? "default");
+// console.log('value5 ?? "default":', value5 ?? "default");
+
+// function displayUserSettings(settings) {
+//   const theme = settings?.theme ?? "light";
+//   const fontSize = settings?.fontSize ?? 14;
+//   const notifications = settings?.notifications ?? true;
+
+//   console.log("Настройки пользователя:");
+//   console.log("Тема:", theme);
+//   console.log("Размер шрифта:", fontSize);
+//   console.log("Уведомления:", notifications);
+// }
+// displayUserSettings({ theme: "dark", fontSize: 16 });
+// displayUserSettings({ notifications: false });
+// displayUserSettings({});
+
+// const apiResponse = {
+//   data: {
+//     user: {
+//       profile: {
+//         settings: {
+//           language: "ru",
+//         },
+//       },
+//     },
+//   },
+// };
+// const language = apiResponse?.data?.user?.profile?.settings?.language ?? "en";
+// console.log("Язык:", language);
+// const emptyResponse = {};
+// const defaultLanguage=emptyResponse?.data?.user?.profile?.
+// settings?.language ?? "en";
+// console.log("Язык по умолчанию:", defaultLanguage); 
+
+const order = {
+    orderId: "ORD-12345",
+    customer: {
+        name: "Иван Петров",
+        email: "ivan@example.com",
+        phone: "+7 (999) 123-45-67"
+    },
+    shipping: {
+        address: {
+            street: "ул. Ленина, д. 10, кв. 25",
+            city: "Москва",
+            zipCode: "101000"
+        },
+        method: "Курьерская доставка",
+    },
+    payment: null, 
+    items: [
+        { name: "Ноутбук", price: 75000, quantity: 1 },
+        { name: "Мышь", price: 1500, quantity: 2 }
+    ]
+};
+function displayOrder(order) {
+    console.log("=".repeat(50));
+    console.log(" ИНФОРМАЦИЯ О ЗАКАЗЕ");
+    console.log("=".repeat(50));
+    
+    console.log("\n ИНФОРМАЦИЯ О ЗАКАЗЧИКЕ:");
+    console.log(`   Имя: ${order.customer?.name ?? "Не указано"}`);
+    console.log(`   Email: ${order.customer?.email ?? "Не указан"}`);
+    console.log(`   Телефон: ${order.customer?.phone ?? "Не указан"}`);
+    console.log("\n ИНФОРМАЦИЯ О ДОСТАВКЕ:");
+    console.log(`   Способ доставки: ${order.shipping?.method ?? "Не выбран"}`);
+    console.log(`   Трек-номер: ${order.shipping?.trackingNumber ?? "Не назначен"}`);
+    console.log(`   Адрес: ${order.shipping?.address?.street ?? "Не указан"}`);
+    console.log(`   Город: ${order.shipping?.address?.city ?? "Не указан"}`);
+    console.log(`   Индекс: ${order.shipping?.address?.zipCode ?? "Не указан"}`);
+    console.log("\n ИНФОРМАЦИЯ ОБ ОПЛАТЕ:");
+    console.log(`   Статус оплаты: ${order.payment?.status ?? "Ожидает оплаты"}`);
+    console.log(`   Способ оплаты: ${order.payment?.method ?? "Не выбран"}`);
+    console.log(`   Сумма оплаты: ${order.payment?.amount ?? "0"} ₽`);
+    console.log(`   Номер транзакции: ${order.payment?.transactionId ?? "Отсутствует"}`);
+    console.log("\n ТОВАРЫ В ЗАКАЗЕ:");
+    if (order.items && order.items.length > 0) {
+        let totalAmount = 0;
+        order.items.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            totalAmount += itemTotal;
+            console.log(`   ${index + 1}. ${item.name}`);
+            console.log(`      Цена: ${item.price} ₽ × ${item.quantity} шт. = ${itemTotal} ₽`);
+        });
+        console.log(`\n   ИТОГО: ${totalAmount} ₽`);
+    } else {
+        console.log("   Нет товаров в заказе");
+    }
+    console.log("\n ОБЩАЯ ИНФОРМАЦИЯ:");
+    console.log(`   Номер заказа: ${order.orderId ?? "Не присвоен"}`);
+    console.log(`   Дата заказа: ${order.orderDate ?? new Date().toLocaleDateString()}`);
+    console.log(`   Комментарий: ${order.comment ?? "Без комментариев"}`);
+    
+    console.log("\n" + "=".repeat(50));
+}
+console.log("Пример 1: Заказ с частично заполненными данными\n");
+displayOrder(order);
+console.log("\n\nПример 2: Заказ с полностью заполненными данными\n");
+
+const fullOrder = {
+    orderId: "ORD-67890",
+    orderDate: "2024-01-15",
+    comment: "Позвонить перед доставкой",
+    customer: {
+        name: "Анна Смирнова",
+        email: "anna@example.com",
+        phone: "+7 (916) 987-65-43"
+    },
+    shipping: {
+        address: {
+            street: "пр. Вернадского, д. 25, кв. 101",
+            city: "Москва",
+            zipCode: "119415"
+        },
+        method: "СДЭК",
+        trackingNumber: "TRK-123456789"
+    },
+    payment: {
+        status: "Оплачен",
+        method: "Банковская карта",
+        amount: 86500,
+        transactionId: "TXN-987654321"
+    },
+    items: [
+        { name: "Смартфон", price: 65000, quantity: 1 },
+        { name: "Чехол", price: 1500, quantity: 2 },
+        { name: "Защитное стекло", price: 1000, quantity: 1 }
+    ]
+};
+
+displayOrder(fullOrder);
+console.log("\n\nПример 3: Заказ с минимальными данными\n");
+
+const minimalOrder = {
+    orderId: "ORD-00001",
+    customer: {
+        name: "Тестовый пользователь"
+    }
+};
+
+displayOrder(minimalOrder
