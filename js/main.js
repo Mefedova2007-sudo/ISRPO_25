@@ -508,96 +508,154 @@
 // }
 // cookDinnerFast().then((result) => console.log(result));
 
-function checkStock(orderId) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const isAvailable = Math.random() > 0.3;
-      if (isAvailable) {
-        resolve({ success: true, message: `Товар по заказу ${orderId} в наличии` });
-      } else {
-        reject(new Error(`Товар по заказу ${orderId} отсутствует на складе`));
-      }
-    }, 1000);
-  });
-}
+// function checkStock(orderId) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const isAvailable = Math.random() > 0.3;
+//       if (isAvailable) {
+//         resolve({ success: true, message: `Товар по заказу ${orderId} в наличии` });
+//       } else {
+//         reject(new Error(`Товар по заказу ${orderId} отсутствует на складе`));
+//       }
+//     }, 1000);
+//   });
+// }
 
-function calculateCost(orderId, items) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const totalCost = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+// function calculateCost(orderId, items) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const totalCost = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-      if (totalCost > 0) {
-        resolve({
-          success: true,
-          totalCost: totalCost,
-          message: `Стоимость заказа ${orderId} рассчитана: ${totalCost} руб.`,
-        });
-      } else {
-        reject(new Error(`Не удалось рассчитать стоимость заказа ${orderId}`));
-      }
-    }, 1000);
-  });
-}
+//       if (totalCost > 0) {
+//         resolve({
+//           success: true,
+//           totalCost: totalCost,
+//           message: `Стоимость заказа ${orderId} рассчитана: ${totalCost} руб.`,
+//         });
+//       } else {
+//         reject(new Error(`Не удалось рассчитать стоимость заказа ${orderId}`));
+//       }
+//     }, 1000);
+//   });
+// }
 
-function confirmOrder(orderId, totalCost) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const isConfirmed = Math.random() > 0.2;
-      if (isConfirmed) {
-        resolve({
-          success: true,
-          orderId: orderId,
-          message: `Заказ ${orderId} подтверждён на сумму ${totalCost} руб.`,
-        });
-      } else {
-        reject(new Error(`Не удалось подтвердить заказ ${orderId}`));
-      }
-    }, 1000);
-  });
-}
-async function processOrder(orderId, items) {
-  try {
-    console.log(`Начинаем обработку заказа ${orderId}...`);
-    const stockResult = await checkStock(orderId);
-    console.log(stockResult.message);
-    const costResult = await calculateCost(orderId, items);
-    console.log(costResult.message);
-    const confirmResult = await confirmOrder(orderId, costResult.totalCost);
-    console.log(confirmResult.message);
-    return {
-      success: true,
-      orderId: orderId,
-      totalCost: costResult.totalCost,
-      message: `Заказ ${orderId} успешно оформлен`,
-    };
-  } catch (error) {
-    console.error(`Ошибка при обработке заказа ${orderId}:`, error.message);
+// function confirmOrder(orderId, totalCost) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const isConfirmed = Math.random() > 0.2;
+//       if (isConfirmed) {
+//         resolve({
+//           success: true,
+//           orderId: orderId,
+//           message: `Заказ ${orderId} подтверждён на сумму ${totalCost} руб.`,
+//         });
+//       } else {
+//         reject(new Error(`Не удалось подтвердить заказ ${orderId}`));
+//       }
+//     }, 1000);
+//   });
+// }
+// async function processOrder(orderId, items) {
+//   try {
+//     console.log(`Начинаем обработку заказа ${orderId}...`);
+//     const stockResult = await checkStock(orderId);
+//     console.log(stockResult.message);
+//     const costResult = await calculateCost(orderId, items);
+//     console.log(costResult.message);
+//     const confirmResult = await confirmOrder(orderId, costResult.totalCost);
+//     console.log(confirmResult.message);
+//     return {
+//       success: true,
+//       orderId: orderId,
+//       totalCost: costResult.totalCost,
+//       message: `Заказ ${orderId} успешно оформлен`,
+//     };
+//   } catch (error) {
+//     console.error(`Ошибка при обработке заказа ${orderId}:`, error.message);
 
-    return {
-      success: false,
-      orderId: orderId,
-      error: error.message,
-      message: `Заказ ${orderId} не может быть обработан`,
-    };
-  }
-}
+//     return {
+//       success: false,
+//       orderId: orderId,
+//       error: error.message,
+//       message: `Заказ ${orderId} не может быть обработан`,
+//     };
+//   }
+// }
 
-const testOrder = {
-  orderId: "ORDER-12345",
-  items: [
-    { name: "Товар 1", price: 1000, quantity: 2 },
-    { name: "Товар 2", price: 500, quantity: 1 },
-    { name: "Товар 3", price: 300, quantity: 3 },
-  ],
-};
+// const testOrder = {
+//   orderId: "ORDER-12345",
+//   items: [
+//     { name: "Товар 1", price: 1000, quantity: 2 },
+//     { name: "Товар 2", price: 500, quantity: 1 },
+//     { name: "Товар 3", price: 300, quantity: 3 },
+//   ],
+// };
 
-processOrder(testOrder.orderId, testOrder.items).then((result) => {
-  console.log("\n=== ИТОГОВЫЙ РЕЗУЛЬТАТ ===");
-  console.log(result);
+// processOrder(testOrder.orderId, testOrder.items).then((result) => {
+//   console.log("\n=== ИТОГОВЫЙ РЕЗУЛЬТАТ ===");
+//   console.log(result);
 
-  if (result.success) {
-    console.log(" Заказ успешно оформлен!");
-  } else {
-    console.log(" Заказ не оформлен из-за ошибки");
-  }
-});
+//   if (result.success) {
+//     console.log(" Заказ успешно оформлен!");
+//   } else {
+//     console.log(" Заказ не оформлен из-за ошибки");
+//   }
+// });
+
+// console.log("Fetch API");
+
+// async function getUsers() {
+//   try {
+//     const response = await fetch("https://jsonplaceholder.typicode.com/users");
+//     if (!response.ok) {
+//       throw new Error(`НТТР ошибка! Статус: ${response.status}`);
+//     }
+//     const users = await response.json();
+//     console.log("Первые 3 пользователя:");
+//     users.slice(0, 3).forEach((user) => {
+//       console.log(`- ${user.name} (${user.email})`);
+//     });
+//   } catch (error) {
+//     console.log("Ошибка при загрузке пользователей:", error.message);
+//   }
+// }
+// getUsers();
+
+// async function getUserById(id) {
+//   try {
+//     const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+//     const user = await response.json();
+//     console.log(`Пользователь #${id}:`);
+//     console.log(`Имя: ${user.name}`);
+//     console.log(`Город: ${user.address.city}`);
+//     console.log(`Компания: ${user.company.name}`);
+//   } catch (error) {
+//     console.log("Ошибка:", error.message);
+//   }
+// }
+// getUserById(1);
+
+// async function createPost() {
+// try {
+// const newPost = {
+// title: "Моя первая запись",
+// body: "Это содержание моей первой записи в блоге",
+// userId: 1,
+// };
+// const response=await fetch("https://jsonplaceholder.typicode.com/posts", {
+// method: "POST",
+// headers: {
+// "Content-Type": "application/json",
+// },
+// body: JSON.stringify(newPost),
+// });
+
+// const createdPost=await response.json();
+// console.log("Создана новая запись:");
+// console.log("ID:", createdPost.id);
+// console.log("Заголовок:", createdPost.title);
+// } catch (error) {
+// console.log("Ошибка при создании записи:", error.message);
+// }
+// }
+// createPost();
