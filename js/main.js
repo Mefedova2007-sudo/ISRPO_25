@@ -859,4 +859,4 @@ const minimalOrder = {
     }
 };
 
-displayOrder(minimalOrder
+displayOrder(minimalOrder);
